@@ -1,0 +1,10 @@
+{
+  "molding": "json",
+  "remolder": {
+    "priority": 2000,
+    "type": "replace",
+    "target": "overrides",
+    "value": []
+  },
+  "selector": "minecraft:models/item/painting"
+}

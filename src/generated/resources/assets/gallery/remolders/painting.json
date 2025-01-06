@@ -1,0 +1,306 @@
+{
+  "molding": "json",
+  "remolder": [
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/kebab",
+        "predicate": {
+          "minecraft:kebab": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/aztec",
+        "predicate": {
+          "minecraft:aztec": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/alban",
+        "predicate": {
+          "minecraft:alban": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/aztec2",
+        "predicate": {
+          "minecraft:aztec2": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/bomb",
+        "predicate": {
+          "minecraft:bomb": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/plant",
+        "predicate": {
+          "minecraft:plant": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/wasteland",
+        "predicate": {
+          "minecraft:wasteland": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/pool",
+        "predicate": {
+          "minecraft:pool": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/courbet",
+        "predicate": {
+          "minecraft:courbet": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/sea",
+        "predicate": {
+          "minecraft:sea": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/sunset",
+        "predicate": {
+          "minecraft:sunset": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/creebet",
+        "predicate": {
+          "minecraft:creebet": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/wanderer",
+        "predicate": {
+          "minecraft:wanderer": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/graham",
+        "predicate": {
+          "minecraft:graham": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/match",
+        "predicate": {
+          "minecraft:match": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/bust",
+        "predicate": {
+          "minecraft:bust": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/stage",
+        "predicate": {
+          "minecraft:stage": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/void",
+        "predicate": {
+          "minecraft:void": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/skull_and_roses",
+        "predicate": {
+          "minecraft:skull_and_roses": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/wither",
+        "predicate": {
+          "minecraft:wither": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/fighters",
+        "predicate": {
+          "minecraft:fighters": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/pointer",
+        "predicate": {
+          "minecraft:pointer": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/pigscene",
+        "predicate": {
+          "minecraft:pigscene": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/burning_skull",
+        "predicate": {
+          "minecraft:burning_skull": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/skeleton",
+        "predicate": {
+          "minecraft:skeleton": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/earth",
+        "predicate": {
+          "minecraft:earth": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/wind",
+        "predicate": {
+          "minecraft:wind": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/water",
+        "predicate": {
+          "minecraft:water": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/fire",
+        "predicate": {
+          "minecraft:fire": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/donkey_kong",
+        "predicate": {
+          "minecraft:donkey_kong": 1.0
+        }
+      }
+    }
+  ],
+  "selector": "minecraft:models/item/painting"
+}
