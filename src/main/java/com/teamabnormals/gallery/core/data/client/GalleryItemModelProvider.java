@@ -9,15 +9,17 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 
 public class GalleryItemModelProvider extends BlueprintItemModelProvider {
+	protected final String location;
 
-	public GalleryItemModelProvider(PackOutput output, ExistingFileHelper helper) {
+	public GalleryItemModelProvider(String modid, PackOutput output, ExistingFileHelper helper) {
 		super(output, Gallery.MOD_ID, helper);
+		this.location = modid;
 	}
 
 	@Override
 	protected void registerModels() {
-		BuiltInRegistries.PAINTING_VARIANT.registryKeySet().forEach(variant -> {
-			String name = new ResourceLocation(Gallery.MOD_ID, "item/painting/" + variant.location().getPath()).toString();
+		BuiltInRegistries.PAINTING_VARIANT.registryKeySet().stream().filter(key -> key.location().getNamespace().equals(this.location.equals(Gallery.MOD_ID) ? "minecraft" : this.location)).forEach(variant -> {
+			String name = new ResourceLocation(this.location, "item/painting/" + variant.location().getPath()).toString();
 			this.withExistingParent(name, "item/generated").texture("layer0", name);
 		});
 	}

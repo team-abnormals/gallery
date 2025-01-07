@@ -53,7 +53,7 @@ public class Gallery {
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean client = event.includeClient();
-		generator.addProvider(client, new GalleryItemModelProvider(output, helper));
-		generator.addProvider(client, new GalleryAssetsRemolderProvider(output, provider));
+		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper));
+		generator.addProvider(client, new GalleryAssetsRemolderProvider(MOD_ID, output, provider));
 	}
 }
