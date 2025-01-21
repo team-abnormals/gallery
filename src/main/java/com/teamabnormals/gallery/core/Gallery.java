@@ -4,8 +4,10 @@ import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.teamabnormals.gallery.common.network.C2SPaintingVariantMessage;
 import com.teamabnormals.gallery.core.data.client.GalleryAssetsRemolderProvider;
 import com.teamabnormals.gallery.core.data.client.GalleryItemModelProvider;
+import com.teamabnormals.gallery.core.data.server.tags.GalleryPaintingVariantTagsProvider;
 import com.teamabnormals.gallery.core.other.GalleryClientCompat;
 import com.teamabnormals.gallery.core.registry.GalleryMenuTypes;
+import com.teamabnormals.gallery.core.registry.GalleryPaintingVariants;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -18,7 +20,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
@@ -39,6 +40,7 @@ public class Gallery {
 		MinecraftForge.EVENT_BUS.register(this);
 		REGISTRY_HELPER.register(bus);
 
+		GalleryPaintingVariants.PAINTING_VARIANTS.register(bus);
 		GalleryMenuTypes.MENU_TYPES.register(bus);
 
 		bus.addListener(this::commonSetup);
@@ -64,6 +66,9 @@ public class Gallery {
 		PackOutput output = generator.getPackOutput();
 		CompletableFuture<Provider> provider = event.getLookupProvider();
 		ExistingFileHelper helper = event.getExistingFileHelper();
+
+		boolean server = event.includeServer();
+		generator.addProvider(server, new GalleryPaintingVariantTagsProvider(output, provider, helper));
 
 		boolean client = event.includeClient();
 		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper));
