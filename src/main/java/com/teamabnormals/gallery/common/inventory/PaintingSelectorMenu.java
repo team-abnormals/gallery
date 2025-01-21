@@ -17,6 +17,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
@@ -87,7 +88,7 @@ public class PaintingSelectorMenu extends AbstractContainerMenu {
 	}
 
 	public void setupPaintingLists() {
-		this.allPaintings = this.level.registryAccess().lookup(Registries.PAINTING_VARIANT).get().get(PaintingVariantTags.PLACEABLE).get().stream().toList();
+		this.allPaintings = this.level.registryAccess().lookup(Registries.PAINTING_VARIANT).get().get(PaintingVariantTags.PLACEABLE).get().stream().sorted(CreativeModeTabs.PAINTING_COMPARATOR).toList();
 		this.paintings = List.copyOf(this.allPaintings);
 	}
 
