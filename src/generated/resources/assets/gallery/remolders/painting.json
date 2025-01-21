@@ -300,6 +300,206 @@
           "minecraft:donkey_kong": 1.0
         }
       }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/backyard",
+        "predicate": {
+          "gallery:backyard": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/baroque",
+        "predicate": {
+          "gallery:baroque": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/bouquet",
+        "predicate": {
+          "gallery:bouquet": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/cavebird",
+        "predicate": {
+          "gallery:cavebird": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/changing",
+        "predicate": {
+          "gallery:changing": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/cotan",
+        "predicate": {
+          "gallery:cotan": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/endboss",
+        "predicate": {
+          "gallery:endboss": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/fern",
+        "predicate": {
+          "gallery:fern": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/finding",
+        "predicate": {
+          "gallery:finding": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/humble",
+        "predicate": {
+          "gallery:humble": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/lowmist",
+        "predicate": {
+          "gallery:lowmist": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/meditative",
+        "predicate": {
+          "gallery:meditative": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/orb",
+        "predicate": {
+          "gallery:orb": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/owlemons",
+        "predicate": {
+          "gallery:owlemons": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/passage",
+        "predicate": {
+          "gallery:passage": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/pond",
+        "predicate": {
+          "gallery:pond": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/prairie_ride",
+        "predicate": {
+          "gallery:prairie_ride": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/sunflowers",
+        "predicate": {
+          "gallery:sunflowers": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/tides",
+        "predicate": {
+          "gallery:tides": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "gallery:item/painting/unpacked",
+        "predicate": {
+          "gallery:unpacked": 1.0
+        }
+      }
     }
   ],
   "selector": "minecraft:models/item/painting"

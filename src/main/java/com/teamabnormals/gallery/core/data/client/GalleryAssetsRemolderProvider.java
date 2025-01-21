@@ -27,8 +27,15 @@ public class GalleryAssetsRemolderProvider extends RemolderProvider {
 
 	@Override
 	protected void registerEntries(HolderLookup.Provider provider) {
+		this.entry("painting").path("minecraft:models/item/painting").remolder(new SequenceRemolder(this.filterPaintingsByNamespace(provider, this.modId)));
+	}
+
+	public List<Remolder> filterPaintingsByNamespace(HolderLookup.Provider provider, String namespace) {
 		List<Remolder> remolders = Lists.newArrayList();
-		provider.lookup(Registries.PAINTING_VARIANT).get().listElementIds().filter(key -> key.location().getNamespace().equals(this.modId.equals(Gallery.MOD_ID) ? "minecraft" : this.modId)).forEach(variant -> {
+		provider.lookup(Registries.PAINTING_VARIANT).get().listElementIds().filter(key -> {
+			String paintingNamespace = key.location().getNamespace();
+			return paintingNamespace.equals(namespace) || this.modId.equals(Gallery.MOD_ID) && paintingNamespace.equals("minecraft");
+		}).forEach(variant -> {
 			JsonObject ret = new JsonObject();
 			JsonObject predicatesJson = new JsonObject();
 			predicatesJson.addProperty(variant.location().toString(), 1.0F);
@@ -37,6 +44,6 @@ public class GalleryAssetsRemolderProvider extends RemolderProvider {
 			remolders.add(add(target("overrides[]"), value(ops -> ret)));
 		});
 
-		this.entry("painting").path("minecraft:models/item/painting").remolder(new SequenceRemolder(remolders));
+		return remolders;
 	}
 }

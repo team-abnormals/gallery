@@ -18,7 +18,10 @@ public class GalleryItemModelProvider extends BlueprintItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		BuiltInRegistries.PAINTING_VARIANT.registryKeySet().stream().filter(key -> key.location().getNamespace().equals(this.location.equals(Gallery.MOD_ID) ? "minecraft" : this.location)).forEach(variant -> {
+		BuiltInRegistries.PAINTING_VARIANT.registryKeySet().stream().filter(key -> {
+			String namespace = key.location().getNamespace();
+			return namespace.equals(this.location) || this.location.equals(Gallery.MOD_ID) && namespace.equals("minecraft");
+		}).forEach(variant -> {
 			String name = new ResourceLocation(this.location, "item/painting/" + variant.location().getPath()).toString();
 			this.withExistingParent(name, "item/generated").texture("layer0", name);
 		});
