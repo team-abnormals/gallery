@@ -3,6 +3,7 @@ package com.teamabnormals.gallery.core.other;
 import com.teamabnormals.gallery.common.inventory.PaintingSelectorMenu;
 import com.teamabnormals.gallery.core.Gallery;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickItem;
@@ -14,9 +15,13 @@ public class GalleryEvents {
 	private static final Component CONTAINER_TITLE = Component.translatable("container.gallery.painting_selector");
 
 	@SubscribeEvent
-	public static void rightClickEntity(RightClickItem event) {
-		if (event.getItemStack().is(Items.PAINTING) && !event.getLevel().isClientSide()) {
-			event.getEntity().openMenu(new SimpleMenuProvider((id, inventory, player) -> new PaintingSelectorMenu(id, inventory), CONTAINER_TITLE));
+	public static void rightClickWithPainting(RightClickItem event) {
+		if (event.getItemStack().is(Items.PAINTING)) {
+			if (!event.getLevel().isClientSide()) {
+				event.getEntity().openMenu(new SimpleMenuProvider((id, inventory, player) -> new PaintingSelectorMenu(id, inventory), CONTAINER_TITLE));
+			}
+			event.setCancellationResult(InteractionResult.sidedSuccess(event.getLevel().isClientSide()));
+			event.setCanceled(true);
 		}
 	}
 }
