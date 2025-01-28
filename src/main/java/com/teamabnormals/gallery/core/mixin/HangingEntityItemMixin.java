@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class HangingEntityItemMixin {
 
 	@Redirect(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;shrink(I)V"))
-	public void getPickResult(ItemStack stack, int size, UseOnContext context) {
+	public void useOn(ItemStack stack, int size, UseOnContext context) {
 		if (!context.getLevel().isClientSide()) {
 			stack.shrink(size);
 		}

@@ -1,5 +1,6 @@
 package com.teamabnormals.gallery.core;
 
+import com.teamabnormals.blueprint.core.BlueprintConfig;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.teamabnormals.gallery.common.network.C2SPaintingVariantMessage;
 import com.teamabnormals.gallery.core.data.client.GalleryAssetsRemolderProvider;
@@ -16,7 +17,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -35,6 +39,7 @@ public class Gallery {
 
 	public Gallery() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		ModLoadingContext context = ModLoadingContext.get();
 		this.setupPlayMessages();
 
 		MinecraftForge.EVENT_BUS.register(this);
@@ -43,9 +48,19 @@ public class Gallery {
 		GalleryPaintingVariants.PAINTING_VARIANTS.register(bus);
 		GalleryMenuTypes.MENU_TYPES.register(bus);
 
+		bus.addListener((ModConfigEvent event) -> {
+			final ModConfig config = event.getConfig();
+			if (config.getSpec() == GalleryConfig.CLIENT_SPEC) {
+				GalleryConfig.CLIENT.load();
+			}
+		});
+
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::dataSetup);
+
+		context.registerConfig(ModConfig.Type.CLIENT, GalleryConfig.CLIENT_SPEC);
+		context.registerConfig(ModConfig.Type.COMMON, GalleryConfig.COMMON_SPEC);
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {

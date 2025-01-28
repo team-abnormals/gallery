@@ -1,8 +1,10 @@
 package com.teamabnormals.gallery.core.mixin;
 
+import com.teamabnormals.gallery.core.GalleryConfig;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.HangingEntity;
 import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -31,11 +33,18 @@ public abstract class PaintingMixin extends HangingEntity {
 	@Redirect(method = "dropItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/decoration/Painting;spawnAtLocation(Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/entity/item/ItemEntity;"))
 	public ItemEntity spawnAtLocation(Painting painting, ItemLike item, @Nullable Entity entity) {
 		ItemStack stack = new ItemStack(item);
-		if (entity instanceof Player player) {
+		if (entity instanceof Player player && GalleryConfig.COMMON.paintingsDropVariants.get()) {
 			ItemStack tool = player.getItemInHand(player.getUsedItemHand());
-			if (tool.is(Tags.Items.SHEARS) || EnchantmentHelper.hasSilkTouch(tool)) {
+			boolean shears = GalleryConfig.COMMON.requiresShears.get();
+			boolean silkTouch = GalleryConfig.COMMON.requiresSilkTouch.get();
+			if ((!shears && !silkTouch) || (shears && tool.is(Tags.Items.SHEARS)) || (silkTouch && EnchantmentHelper.hasSilkTouch(tool))) {
 				CompoundTag tag = stack.getOrCreateTagElement("EntityTag");
 				Painting.storeVariant(tag, ((Painting) (Object) this).getVariant());
+
+				if (!player.level().isClientSide()) {
+					tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+				}
+
 				return this.spawnAtLocation(stack);
 			}
 		}

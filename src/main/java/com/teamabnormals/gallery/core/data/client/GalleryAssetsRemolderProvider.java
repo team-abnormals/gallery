@@ -1,5 +1,6 @@
 package com.teamabnormals.gallery.core.data.client;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.teamabnormals.blueprint.common.remolder.Remolder;
 import com.teamabnormals.blueprint.common.remolder.SequenceRemolder;
@@ -32,6 +33,7 @@ public class GalleryAssetsRemolderProvider extends RemolderProvider {
 
 	public List<Remolder> filterPaintingsByNamespace(HolderLookup.Provider provider, String namespace) {
 		List<Remolder> remolders = Lists.newArrayList();
+		remolders.add(add(target("overrides"), value(ops -> new JsonArray())));
 		provider.lookup(Registries.PAINTING_VARIANT).get().listElementIds().filter(key -> {
 			String paintingNamespace = key.location().getNamespace();
 			return paintingNamespace.equals(namespace) || this.modId.equals(Gallery.MOD_ID) && paintingNamespace.equals("minecraft");

@@ -1,6 +1,7 @@
 package com.teamabnormals.gallery.core.other;
 
 import com.teamabnormals.gallery.core.Gallery;
+import com.teamabnormals.gallery.core.GalleryConfig;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,7 +20,7 @@ public class GalleryClientCompat {
 		BuiltInRegistries.PAINTING_VARIANT.registryKeySet().forEach(variant -> {
 			ItemProperties.register(Items.PAINTING, variant.location(), (stack, level, entity, hash) -> {
 				Optional<Holder<PaintingVariant>> block = Painting.loadVariant(stack.getOrCreateTagElement("EntityTag"));
-				return block.isPresent() && block.get().is(variant) ? 1.0F : 0.0F;
+				return block.isPresent() && block.get().is(variant) && GalleryConfig.CLIENT.paintingIconsEnabled ? 1.0F : 0.0F;
 			});
 		});
 	}
