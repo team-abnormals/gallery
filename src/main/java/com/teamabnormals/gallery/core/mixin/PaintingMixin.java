@@ -41,7 +41,7 @@ public abstract class PaintingMixin extends HangingEntity {
 				CompoundTag tag = stack.getOrCreateTagElement("EntityTag");
 				Painting.storeVariant(tag, ((Painting) (Object) this).getVariant());
 
-				if (!player.level().isClientSide()) {
+				if ((shears || silkTouch) && !player.level().isClientSide()) {
 					tool.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(EquipmentSlot.MAINHAND));
 				}
 
