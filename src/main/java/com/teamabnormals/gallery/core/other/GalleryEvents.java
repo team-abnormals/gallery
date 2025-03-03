@@ -29,10 +29,10 @@ public class GalleryEvents {
 
 	public static void doPaintingLogic(PlayerInteractEvent event, boolean block) {
 		if (event.getItemStack().is(Items.PAINTING) && GalleryConfig.COMMON.paintingSelector.get()) {
-			if (block && GalleryConfig.COMMON.paintingSelectorOpensOnBlocks.get() && !event.getEntity().isCrouching())
+			if (block && !GalleryConfig.COMMON.paintingSelectorOpensOnBlocks.get())
 				return;
 
-			if (!block && GalleryConfig.COMMON.paintingSelectorRequiresCrouching.get() && !event.getEntity().isCrouching())
+			if (GalleryConfig.COMMON.paintingSelectorRequiresCrouching.get() && !event.getEntity().isCrouching())
 				return;
 
 			if (!event.getLevel().isClientSide()) {

@@ -25,7 +25,7 @@ public class GalleryConfig {
 			builder.push("painting_selector");
 			paintingSelector = builder.comment("If right-clicking with a Painting item opens up a Painting selector menu").define("Painting selector", true);
 			paintingSelectorRequiresCrouching = builder.comment("If you must be crouching to open the Painting selector").define("Painting selector requires crouching", false);
-			paintingSelectorOpensOnBlocks = builder.comment("If the Painting selector can be opened when crouching while right-clicking a block").define("Painting selector opens on blocks", true);
+			paintingSelectorOpensOnBlocks = builder.comment("If the Painting selector can be opened while right-clicking a block").define("Painting selector opens on blocks", false);
 			builder.pop();
 			builder.pop();
 		}
