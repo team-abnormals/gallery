@@ -19,7 +19,9 @@ public class GalleryEvents {
 
 	@SubscribeEvent
 	public static void rightClickWithPainting(RightClickBlock event) {
-		doPaintingLogic(event, true);
+		if (event.getFace() != null && event.getFace().getAxis().isVertical()) {
+			doPaintingLogic(event, true);
+		}
 	}
 
 	@SubscribeEvent
