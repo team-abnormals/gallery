@@ -1,12 +1,12 @@
 package com.teamabnormals.gallery.common.inventory;
 
 import com.google.common.collect.Lists;
-import com.teamabnormals.gallery.common.network.C2SPaintingVariantMessage;
-import com.teamabnormals.gallery.core.Gallery;
+import com.teamabnormals.gallery.common.network.UpdatePaintingVariant;
 import com.teamabnormals.gallery.core.registry.GalleryMenuTypes;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.PaintingVariantTags;
@@ -19,9 +19,12 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PaintingSelectorMenu extends AbstractContainerMenu {
 	private final Level level;
@@ -34,7 +37,7 @@ public class PaintingSelectorMenu extends AbstractContainerMenu {
 		super(GalleryMenuTypes.PAINTING_SELECTOR.get(), p_40297_);
 		this.level = p_40298_.player.level();
 
-		this.setSelectedPainting(Painting.loadVariant(p_40298_.player.getItemInHand(p_40298_.player.getUsedItemHand()).getOrCreateTagElement("EntityTag")).orElse(null));
+		this.setSelectedPainting(loadVariant(this.level, p_40298_.player.getItemInHand(p_40298_.player.getUsedItemHand())).orElse(null));
 		this.resetPaintingList();
 		this.setupPaintingLists();
 	}
@@ -72,7 +75,7 @@ public class PaintingSelectorMenu extends AbstractContainerMenu {
 		if (index >= 0 && index < this.getNumPaintings() && level.isClientSide) {
 			Holder<PaintingVariant> variant = this.getPaintings().get(index);
 			this.setSelectedPainting(variant);
-			Gallery.PLAY.sendToServer(new C2SPaintingVariantMessage(variant.unwrapKey().get().location()));
+			PacketDistributor.sendToServer(new UpdatePaintingVariant(variant.unwrapKey().get().location()));
 		}
 
 		return true;
@@ -102,9 +105,26 @@ public class PaintingSelectorMenu extends AbstractContainerMenu {
 		if (this.getSelectedPainting() != null) {
 			InteractionHand hand = player.getUsedItemHand();
 			ItemStack stack = player.getItemInHand(hand).copy();
-			CompoundTag tag = stack.getOrCreateTagElement("EntityTag");
-			Painting.storeVariant(tag, this.getSelectedPainting());
+			storeVariant(player.level(), stack, this.getSelectedPainting());
 			player.setItemInHand(hand, stack);
 		}
+	}
+
+	public static Optional<Holder<PaintingVariant>> loadVariant(Level level, ItemStack stack) {
+		CustomData data = stack.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY);
+		if (!data.isEmpty()) {
+			Optional<Holder<PaintingVariant>> holder = data.read(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC).result();
+			return holder;
+		}
+		return Optional.empty();
+	}
+
+	public static ItemStack storeVariant(Level level, ItemStack stack, Holder<PaintingVariant> variant) {
+		CustomData data = CustomData.EMPTY
+				.update(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, variant)
+				.getOrThrow()
+				.update(tag -> tag.putString("id", "minecraft:painting"));
+		stack.set(DataComponents.ENTITY_DATA, data);
+		return stack;
 	}
 }

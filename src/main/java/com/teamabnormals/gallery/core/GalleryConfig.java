@@ -1,7 +1,7 @@
 package com.teamabnormals.gallery.core;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class GalleryConfig {
@@ -15,7 +15,7 @@ public class GalleryConfig {
 		public final ConfigValue<Boolean> paintingSelectorRequiresCrouching;
 		public final ConfigValue<Boolean> paintingSelectorOpensOnBlocks;
 
-		Common(ForgeConfigSpec.Builder builder) {
+		Common(ModConfigSpec.Builder builder) {
 			builder.push("paintings");
 			builder.push("painting_drops");
 			paintingsDropVariants = builder.comment("If Paintings drop their variants when broken").define("Paintings drop variants", true);
@@ -33,31 +33,26 @@ public class GalleryConfig {
 
 	public static class Client {
 		public final ConfigValue<Boolean> paintingIcons;
-		public boolean paintingIconsEnabled;
 
-		Client(ForgeConfigSpec.Builder builder) {
+		Client(ModConfigSpec.Builder builder) {
 			builder.push("paintings");
 			paintingIcons = builder.comment("If Paintings have item icons").define("Painting icons", true);
 			builder.pop();
 		}
-
-		public void load() {
-			this.paintingIconsEnabled = this.paintingIcons.get();
-		}
 	}
 
-	public static final ForgeConfigSpec COMMON_SPEC;
+	public static final ModConfigSpec COMMON_SPEC;
 	public static final Common COMMON;
 
-	public static final ForgeConfigSpec CLIENT_SPEC;
+	public static final ModConfigSpec CLIENT_SPEC;
 	public static final Client CLIENT;
 
 	static {
-		final Pair<Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(Common::new);
+		final Pair<Common, ModConfigSpec> commonSpecPair = new ModConfigSpec.Builder().configure(Common::new);
 		COMMON_SPEC = commonSpecPair.getRight();
 		COMMON = commonSpecPair.getLeft();
 
-		final Pair<Client, ForgeConfigSpec> clientSpecPair = new ForgeConfigSpec.Builder().configure(Client::new);
+		final Pair<Client, ModConfigSpec> clientSpecPair = new ModConfigSpec.Builder().configure(Client::new);
 		CLIENT_SPEC = clientSpecPair.getRight();
 		CLIENT = clientSpecPair.getLeft();
 	}
