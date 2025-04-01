@@ -1,6 +1,5 @@
 package com.teamabnormals.gallery.core;
 
-import com.teamabnormals.gallery.client.gui.screens.inventory.PaintingSelectorScreen;
 import com.teamabnormals.gallery.common.network.UpdatePaintingVariant;
 import com.teamabnormals.gallery.core.data.client.GalleryItemModelProvider;
 import com.teamabnormals.gallery.core.registry.GalleryMenuTypes;
@@ -8,13 +7,10 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -33,10 +29,6 @@ public class Gallery {
 
 		bus.addListener(this::dataSetup);
 
-		if (FMLEnvironment.dist == Dist.CLIENT) {
-			bus.addListener(this::registerScreens);
-		}
-
 		container.registerConfig(ModConfig.Type.CLIENT, GalleryConfig.CLIENT_SPEC);
 		container.registerConfig(ModConfig.Type.COMMON, GalleryConfig.COMMON_SPEC);
 	}
@@ -49,10 +41,6 @@ public class Gallery {
 
 		boolean client = event.includeClient();
 		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper, provider));
-	}
-
-	private void registerScreens(RegisterMenuScreensEvent event) {
-		event.register(GalleryMenuTypes.PAINTING_SELECTOR.get(), PaintingSelectorScreen::new);
 	}
 
 	private void registerPayloadHandlers(RegisterPayloadHandlersEvent event) {
