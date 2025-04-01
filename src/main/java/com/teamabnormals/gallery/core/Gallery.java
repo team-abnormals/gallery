@@ -1,6 +1,5 @@
 package com.teamabnormals.gallery.core;
 
-import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import com.teamabnormals.gallery.client.gui.screens.inventory.PaintingSelectorScreen;
 import com.teamabnormals.gallery.common.network.UpdatePaintingVariant;
 import com.teamabnormals.gallery.core.data.client.GalleryItemModelProvider;
@@ -26,12 +25,10 @@ import java.util.concurrent.CompletableFuture;
 @Mod(Gallery.MOD_ID)
 public class Gallery {
 	public static final String MOD_ID = "gallery";
-	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
 	public Gallery(IEventBus bus, ModContainer container) {
 		bus.addListener(this::registerPayloadHandlers);
 
-		REGISTRY_HELPER.register(bus);
 		GalleryMenuTypes.MENU_TYPES.register(bus);
 
 		bus.addListener(this::dataSetup);
