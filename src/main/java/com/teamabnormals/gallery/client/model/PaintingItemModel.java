@@ -102,9 +102,14 @@ public class PaintingItemModel implements BakedModel {
 		@Nullable
 		@Override
 		public BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel world, @Nullable LivingEntity entity, int p_173469_) {
+			ClientLevel level = world;
+			if (level == null){
+				level = Minecraft.getInstance().level;
+			}
+
 			CustomData data = stack.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY);
-			if (!data.isEmpty()) {
-				Optional<Holder<PaintingVariant>> holder = data.read(world.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC).result();
+			if (!data.isEmpty() && level != null) {
+				Optional<Holder<PaintingVariant>> holder = data.read(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC).result();
 				if (holder.isPresent()) {
 					ResourceLocation variant = holder.get().getKey().location();
 					if (variant.getNamespace().equals("minecraft")) {
