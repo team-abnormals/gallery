@@ -19,7 +19,7 @@ public class GalleryPaintingVariants {
 	public static final RegistryObject<PaintingVariant> FERN = PAINTING_VARIANTS.register("fern", () -> new PaintingVariant(48, 48));
 	public static final RegistryObject<PaintingVariant> FINDING = PAINTING_VARIANTS.register("finding", () -> new PaintingVariant(64, 32));
 	public static final RegistryObject<PaintingVariant> HUMBLE = PAINTING_VARIANTS.register("humble", () -> new PaintingVariant(32, 32));
-	public static final RegistryObject<PaintingVariant> LOWMIST = PAINTING_VARIANTS.register("lowmist", () -> new PaintingVariant(48, 32));
+	public static final RegistryObject<PaintingVariant> LOWMIST = PAINTING_VARIANTS.register("lowmist", () -> new PaintingVariant(64, 32));
 	public static final RegistryObject<PaintingVariant> MEDITATIVE = PAINTING_VARIANTS.register("meditative", () -> new PaintingVariant(16, 16));
 	public static final RegistryObject<PaintingVariant> ORB = PAINTING_VARIANTS.register("orb", () -> new PaintingVariant(64, 64));
 	public static final RegistryObject<PaintingVariant> OWLEMONS = PAINTING_VARIANTS.register("owlemons", () -> new PaintingVariant(48, 48));
