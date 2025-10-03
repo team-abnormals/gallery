@@ -1,5 +1,7 @@
 package com.teamabnormals.gallery.core.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.teamabnormals.gallery.common.inventory.PaintingSelectorMenu;
 import com.teamabnormals.gallery.core.GalleryConfig;
 import net.minecraft.core.Holder;
@@ -21,7 +23,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
@@ -36,8 +37,8 @@ public abstract class PaintingMixin extends HangingEntity {
 		super(entityType, level);
 	}
 
-	@Redirect(method = "dropItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/decoration/Painting;spawnAtLocation(Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/entity/item/ItemEntity;"))
-	public ItemEntity spawnAtLocation(Painting painting, ItemLike item, @Nullable Entity entity) {
+	@WrapOperation(method = "dropItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/decoration/Painting;spawnAtLocation(Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/entity/item/ItemEntity;"))
+	public ItemEntity spawnAtLocation(Painting painting, ItemLike item, Operation<ItemEntity> original, @Nullable Entity entity) {
 		ItemStack stack = new ItemStack(item);
 		if (entity instanceof Player player && GalleryConfig.COMMON.paintingsDropVariants.get()) {
 			ItemStack tool = player.getItemInHand(player.getUsedItemHand());
@@ -52,7 +53,7 @@ public abstract class PaintingMixin extends HangingEntity {
 			}
 		}
 
-		return this.spawnAtLocation(stack);
+		return original.call(painting, item);
 	}
 
 	@Inject(method = "getPickResult", at = @At("RETURN"), cancellable = true)
