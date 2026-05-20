@@ -174,10 +174,10 @@ public class PaintingSelectorScreen extends AbstractContainerScreen<PaintingSele
 			float scale = (float) width / (float) height;
 			if (width > 64 && width >= height) {
 				width = 64;
-				height = (int) (height / scale);
+				height = (int) (width / scale);
 			} else if (height > 64) {
 				height = 64;
-				width = (int) (width * scale);
+				width = (int) (height * scale);
 			}
 
 			gui.blit(i + 13, j + 19, 0, width, height, Minecraft.getInstance().getPaintingTextures().get(variant));
